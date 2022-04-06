@@ -10,7 +10,46 @@ namespace lab_4
     //{
     //    public static void Main(string[] args)
     //    {
+    //        //-EX - 1
+    //        Exercise1 exercise1 = new();
+    //        (int, int) point1 = (2, 4);
+    //        Direction4 dir = Direction4.UP;
+    //        (int, int) screensize = (200, 100);
+    //        Console.WriteLine(exercise1.NextPoint(dir, point1, screensize));
 
+
+    //        Console.WriteLine();
+    //        //--EX - 2
+    //        Exercise2 exercise2 = new();
+    //        Console.WriteLine(exercise2.direction);
+
+
+    //        Console.WriteLine();
+    //        //--EX - 3
+    //        Car[] _cars = new Car[]
+    //        {
+    //            new Car(),
+    //            new Car(Model: "Fiat", true),
+    //            new Car(),
+    //            new Car(Power: 100),
+    //            new Car(Model: "Fiat", true),
+    //            new Car(Power: 125),
+    //            new Car()
+    //        };
+    //        Console.WriteLine("Count of cars: " + Exercise3.CarCounter(_cars));
+
+
+    //        Console.WriteLine();
+    //        //--EX - 4
+    //        Student[] students = {
+    //            new Student("Kowal","Adam", 'A'),
+    //            new Student("Nowak","Ewa", 'A')
+    //        };
+    //        Exercise4.AssignStudentId(students);
+    //        foreach (var st in students)
+    //        {
+    //            Console.WriteLine($"Student: {st.LastName} {st.FirstName} Group: {st.Group} StudentID: {st.StudentId}");
+    //        }
     //    }
     //}
 

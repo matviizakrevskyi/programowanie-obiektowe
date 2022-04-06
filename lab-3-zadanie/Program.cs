@@ -7,6 +7,16 @@ class App
         //UWAGA!!! Nie usuwaj poniższego wiersza!!!
         //Console.WriteLine("Otrzymałeś punktów: " + (Test.Exercises_1() + Test.Excersise_2() + Test.Excersise_3()));
         //#1 Musician<decimal> musician = new Musician<decimal>();
+
+        int[] _arr = { 2, 3, 4, 6 };
+
+        //--
+        string[] arr = { "adam", "ola", "adam", "ewa", "karol", "ala", "adam", "ola" };
+        (string, int)[] ex3 = Exercise3.countElements(arr, "adam", "ewa", "ola");
+        foreach (var item in ex3)
+        {
+            Console.WriteLine($"({item.Item1}, {item.Item2})");
+        }
     }
 }
 

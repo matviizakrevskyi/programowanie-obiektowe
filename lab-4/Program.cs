@@ -81,7 +81,7 @@ namespace lab_4
             {
                 Console.WriteLine("Rozni");
             }
-            _Student[] students =
+            _Student[] _students =
             {
                 new _Student("Karol", 12, true),
                 new _Student("Ewa", 17, false),
@@ -89,7 +89,7 @@ namespace lab_4
                 new _Student("Ania", 15, false)
             };
 
-            foreach (_Student st in students)
+            foreach (_Student st in _students)
             {
                 Console.WriteLine(
                     st.Name + 
@@ -109,7 +109,7 @@ namespace lab_4
 
 
             Console.WriteLine();
-            //-
+            //-EX-1
             Exercise1 exercise1 = new();
             (int, int) point1 = (2, 4);
             Direction4 dir = Direction4.UP;
@@ -118,40 +118,44 @@ namespace lab_4
 
 
             Console.WriteLine();
-            //--
+            //--EX-2
             Exercise2 exercise2 = new();
             Console.WriteLine(exercise2.direction);
 
 
             Console.WriteLine();
-            //--
+            //--EX-3
             Car[] _cars = new Car[]
             {
-                 new Car(),
-                 new Car(Model: "Fiat", true),
-                 new Car(),
-                 new Car(Power: 100),
-                 new Car(Model: "Fiat", true),
-                 new Car(Power: 125),
-                 new Car()
+                new Car(),
+                new Car(Model: "Fiat", true),
+                new Car(),
+                new Car(Power: 100),
+                new Car(Model: "Fiat", true),
+                new Car(Power: 125),
+                new Car()
             };
             Console.WriteLine("Count of cars: " + Exercise3.CarCounter(_cars));
 
 
             Console.WriteLine();
-            //--
-            Student[] _students = {
-              new Student("Kowal","Adam", 'A'),
-              new Student("Nowak","Ewa", 'A'),
-              new Student("Nowak", "Jan", 'B'),
-              new Student("Kowal", "Karol", 'A'),
-              new Student("Nowak", "Robert", 'C')
+            //--EX-4
+            Student[] students = {
+                new Student("Kowal","Adam", 'A'),
+                new Student("Nowak","Ewa", 'A')
             };
-            Exercise4.AssignStudentId(_students);
-            foreach (var st in _students)
+            Exercise4.AssignStudentId(students);
+            foreach (var st in students)
             {
                 Console.WriteLine($"Student: {st.LastName} {st.FirstName} Group: {st.Group} StudentID: {st.StudentId}");
             }
+
+
+
+
+
+
+            
         }
     }
 }
