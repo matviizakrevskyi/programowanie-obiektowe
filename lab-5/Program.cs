@@ -5,6 +5,9 @@ using System.Collections.Generic;
 namespace lab_5
 {
     public record  Book (string Tittle, string Author, string Isbn);
+
+
+    //Enumerable
     class Library : IEnumerable<Book>
     {
         internal Book[] _books =
@@ -81,6 +84,7 @@ namespace lab_5
         }
     }
 
+    //Enumerator
     class BookEnumerator : IEnumerator<Book>
     {
         private Library _library;

@@ -6,10 +6,40 @@ class App
 {
     public static void Main(string[] args)
     {
+        //Cw 1
         Exercise1<string> team = new Exercise1<string>() { Manager = "Adam", MemberA = "Ola", MemberB = "Ewa" };
         foreach (var member in team)
         {
             Console.WriteLine(member);
+        }
+
+        //Cw 2
+        CurrencyRates rates = new CurrencyRates();
+        rates[Currency.EUR] = 4.6m;
+        Console.WriteLine(rates[Currency.EUR]);
+
+
+        Console.WriteLine(0.ToString("X"));
+        Console.WriteLine(1.ToString("X"));
+        Console.WriteLine(10.ToString("X"));
+        Console.WriteLine(100.ToString("X"));
+        Console.WriteLine(1000.ToString("X"));
+
+        //Cw 3
+        Exercise3 hex = new Exercise3();
+
+        var commonHex = hex.GetEnumerator();
+        int x = 0;
+        while (x < 100)
+        {
+            Console.WriteLine(commonHex.Current);
+            x++;
+        }
+
+        var limitedHex = hex.GetLimitedHex(4);
+        while (limitedHex.MoveNext())
+        {
+            Console.WriteLine(limitedHex.Current);
         }
     }
 }
@@ -62,9 +92,44 @@ enum Currency
 }
 
 class CurrencyRates
-{
+{ 
     //utwórz tablicę o rozmiarze równym liczbie stalych wyliczeniowych Currency
     private decimal[] _rates = new decimal[Enum.GetValues<Currency>().Length];
+
+    public decimal this[Currency currency]
+    {
+        get
+        {
+            int index = default;
+
+            foreach (var crnc in Enum.GetValues<Currency>())
+            {
+                if (crnc == currency)
+                {
+                    break;
+                }
+
+                index++;
+            }
+
+            return _rates[index];
+        }
+        set
+        {
+            int index = default;
+
+            foreach (var crnc in Enum.GetValues<Currency>())
+            {
+                if (crnc == currency)
+                {
+                    break;
+                }
+
+                index++;
+            }
+            _rates[index] = value;
+        }
+    }
 }
 
 //Cwiczenie 3
@@ -92,7 +157,7 @@ class Exercise3 : IEnumerable<string>
 {
     public IEnumerator<string> GetEnumerator()
     {
-        throw new NotImplementedException();
+        return new Ex3Enumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -102,10 +167,62 @@ class Exercise3 : IEnumerable<string>
 
     public IEnumerator<string> GetLimitedHex(int digitCount)
     {
-        throw new NotImplementedException();
+        return new Ex3Enumerator(digitCount);
     }
 }
 
+class Ex3Enumerator : IEnumerator<string>
+{
+    int index = -1;
+    int count = 8;
+
+    public Ex3Enumerator()
+    {
+        this.count = 8;
+    }
+    public Ex3Enumerator(int count)
+    {
+        this.count = count;
+    }
+
+
+    //--//
+    public string Current
+    {
+        get
+        {
+            index++;
+            string value_str = index.ToString("X");
+            string zero = "";
+
+            if (value_str.Length < count)
+                for (int i = 0; i < count - value_str.Length; i++)
+                    zero = "0" + zero;
+
+            return "0x" + zero + value_str;
+        }
+    }
+
+    object IEnumerator.Current => Current;
+
+    public void Dispose()
+    {
+    }
+
+    public bool MoveNext()
+    {
+        int value = ++index;
+        return value.ToString("X").Length <= count;
+    }
+
+    public void Reset()
+    {
+    }
+}
+
+
+
+//----
 enum ChessPiece
 {
     Empty,
