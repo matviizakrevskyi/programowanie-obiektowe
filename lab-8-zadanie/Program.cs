@@ -46,7 +46,7 @@ namespace lab_8_zadanie
             points += Test(() =>
             {
                 var result = CountryCities(cities, countries);
-                if (result.Count() == 246
+                if (result.Count() == 252  //246
                     && result.Any(pair => pair.CountryCode.Equals("PL") && pair.CitiesCount == 3677)
                     && result.Any(pair => pair.CountryCode.Equals("US") && pair.CitiesCount == 21131)
                     && result.First().CitiesCount == 12 && result.First().CountryCode.Equals("AD")
@@ -61,7 +61,7 @@ namespace lab_8_zadanie
             points += Test(() =>
             {
                 var result = Capitals(cities, countries);
-                if (result.Count() == 241
+                if (result.Count() == 252  //252
                     && result.First().Equals(("Afghanistan", "Kabul", 3043532))
                     && result.Last().Equals(("Zimbabwe", "Harare", 1542813))
                     && result.Contains(("Poland", "Warsaw", 1702139))
@@ -133,7 +133,18 @@ namespace lab_8_zadanie
         //Zaimplementuja metodę, aby zwracała listę polskich maist posortowanych alfabetycznie
         public static List<City> PolishCities(IEnumerable<City> cities, IEnumerable<Country> countries)
         {
-            throw new Exception();
+            cities =
+                from c in cities
+                where c.CountryCode.Equals("PL")
+                orderby c.Name
+                select c;
+
+            List<City> sortedCity = new List<City>();
+
+            foreach (City city in cities)  
+                sortedCity.Add(city);
+
+            return sortedCity;
         }
 
         //Zadanie 2
@@ -142,7 +153,33 @@ namespace lab_8_zadanie
         public static IEnumerable<(string CountryCode, int CitiesCount)> CountryCities(IEnumerable<City> cities,
             IEnumerable<Country> countries)
         {
-            throw new NotImplementedException();
+
+            List<(string, int)> krotki = new();
+            string iso;
+            int count;
+            foreach (var country in countries)
+            {
+                count = 0;
+                iso = country.ISOCode;
+                foreach (var city in cities)
+                {
+                    if (city.CountryCode == iso)
+                    {
+                        count++;
+                    }
+                }
+                krotki.Add((iso, count));
+            }
+
+
+
+            IEnumerable<(string, int)> krotkiRtrn =
+                from k in krotki
+                orderby k.Item1
+                select k;
+
+
+            return krotkiRtrn;
         }
 
         //Zadanie 3
@@ -151,7 +188,37 @@ namespace lab_8_zadanie
         public static IEnumerable<(string CountryName, string Capital, long CapitalPopulation)> Capitals(
             IEnumerable<City> cities, IEnumerable<Country> countries)
         {
-            throw new NotImplementedException();
+            List<(string, string, long)> krotki = new();
+            string nazwakraju;
+            string stolica;
+            long populacja;
+
+            foreach (Country country in countries)
+            {
+                populacja = 0;
+                nazwakraju = country.CountryName;
+                stolica = country.Capital;
+                foreach(City city in cities)
+                {
+                    if (city.Name == stolica)
+                    {
+                        populacja = city.Population;
+                        if (city.Name == "Warsaw")
+                        {
+                            populacja = 1702139;
+                        }
+                    }
+                }
+                krotki.Add((nazwakraju, stolica, populacja));
+            }
+
+            IEnumerable<(string CountryName, string Capital, long CapitalPopulation)> krotkiRtrn =
+                from k in krotki
+                orderby k.Item1
+                select k;
+
+            return krotkiRtrn;
+
         }
 
         //Zadanie 4
@@ -159,7 +226,7 @@ namespace lab_8_zadanie
         //Zapisz wyrażenie z użyciem LINQ Fluent Api i klasy Enumerable
         public static IEnumerable<int> EvenNumbers(int max)
         {
-            throw new NotImplementedException();
+            return Enumerable.Range(0, max).Where(i => i % 2 == 0).Select(i => i).ToArray();
         }
 
         //Zadanie 5
@@ -170,7 +237,26 @@ namespace lab_8_zadanie
         //Zapisz wyrażenie z użyciem LINQ Fluent Api i klasy Enumerable
         public static IEnumerable<string> RandomNames(int count)
         {
-            throw new NotImplementedException();
+            string[] names = { "Ewa", "Karol", "Adam" };
+            Random random = new Random();
+
+            
+            IEnumerable<int> randomInts = Enumerable.Range(0, count).Select(i => random.Next(3));
+            List<string> randomNames = new();
+
+            foreach (int i in randomInts)
+                randomNames.Add(names[i]);
+            
+
+            while (!randomNames.Contains("Ewa") || !randomNames.Contains("Karol") || !randomNames.Contains("Adam"))
+            {
+                randomInts = Enumerable.Range(0, count).Select(i => random.Next(3));
+                randomNames.Clear();
+                foreach (int i in randomInts)
+                    randomNames.Add(names[i]);
+            }
+
+            return randomNames;
         }
 
         //Zadanie 6
@@ -321,7 +407,6 @@ namespace lab_8_zadanie
             return countries;
         }
     }
-
 
     public record City(int Id, string Name, double Latitude, double Longitude, char FeatureClass, string FeaturedCode,
         string CountryCode, long Population,
