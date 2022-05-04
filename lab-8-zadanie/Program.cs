@@ -266,7 +266,15 @@ namespace lab_8_zadanie
         //"A", "AA", "AAA", "AAAA"
         public static IEnumerable<string> Ramp(string s, int count)
         {
-            throw new NotImplementedException();
+            List<string> rtrn = new();
+
+            for (int i = 1; i <= count; i++)
+            {
+                rtrn.Add(String.Concat(Enumerable.Repeat(s, i)));
+            }
+
+            return rtrn;
+
         }
 
         //Zadanie 7

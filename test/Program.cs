@@ -112,6 +112,72 @@ namespace test
 
             string[] jikm = { "0", "1", "0", "1", "0" };
             Console.WriteLine(jikm.Contains("4"));
+
+
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //int funF(int n)
+            //{
+            //    if (n < 2) return n;
+            //    else return n - funG(n);
+            //}
+
+            //int funG(int n)
+            //{
+            //    if (n < 2) return n;
+            //    else return funF(n - 1);
+            //}
+
+            //Console.WriteLine(funF(3));
+            //Console.WriteLine(funF(4));
+            //Console.WriteLine(funF(5));
+            //Console.WriteLine(funF(6));
+
+            //Console.WriteLine(true | false);
+
+            //int[] a = { 1, 2, 3, 4 };
+
+            //throw new Exception();
+            //throw new StackMemoryException();
+            //throw new NullPointerException();
+
+            //int x = 3;
+            //int y = 4;
+            //if (x = y) Console.WriteLine("x = " + x);
+            //else Console.WriteLine("y = " + y);
+
+
+
+            //Console.WriteLine(4 < 4);
+
+
+            int[] aa = { 1, 2, 3, 4 };
+            int[] bb = { 5, 6, 7, 8 };
+
+            Stack<int> S = new Stack<int>(aa);
+            Queue<int> Q = new Queue<int>(bb);
+
+            S.Pop(); Q.Dequeue();
+            S.Push(S.Peek()); Q.Dequeue();
+            S.Push(S.Peek());
+            S.Pop(); Q.Dequeue();
+            Q.Enqueue(Q.Peek()); S.Pop();
+            S.Pop(); Q.Dequeue();
+
+            foreach (var item in S)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine();
+            foreach (var item in Q)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
     
