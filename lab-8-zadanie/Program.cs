@@ -289,9 +289,18 @@ namespace lab_8_zadanie
         //Zastosuj wyłącznie LINQ i metody Prepend i Append 
         public static IEnumerable<string> Tree(int height)
         {
+            List<string> li = new List<string>();
+            for (int i = height; i > 0; i--)
+            {
+                li.Add(String.Concat(Enumerable.Repeat(" ", i - 1))
+                    + String.Concat(Enumerable.Repeat("*", ((height - i + 1) * 2) - 1))
+                    + String.Concat(Enumerable.Repeat(" ", i - 1)));
+            }
 
-            throw new NotImplementedException();
+            return li;
         }
+
+
 
         public static int Test(Func<int> testedCode, string message)
         {
