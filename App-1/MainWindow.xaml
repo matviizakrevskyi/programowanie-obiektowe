@@ -1,0 +1,83 @@
+﻿<Window x:Class="App_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:App_1"
+        mc:Ignorable="d"
+        Title="Przelicznik walut"
+        MinHeight="300"
+        MinWidth="500"
+        Height="450" 
+        Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="OutputValue"
+            Grid.ColumnSpan="3"
+            Margin="10,10,5,5"
+            FontSize="48"
+            TextAlignment="Right"
+            IsEnabled="false"
+            >
+            0,00
+        </TextBox>
+        <TextBox x:Name="InputValue"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="10,5,5,5"
+            FontSize="48"
+            TextAlignment="Right" PreviewTextInput="NumberValidation"
+            >
+            0,00
+        </TextBox>
+        <Button x:Name="CalcButton"
+            Grid.Column="0"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
+            Margin= "10,5,10,10"
+            FontSize="36"
+            Foreground="DarkCyan"
+            Background="Azure" Click="CalcOutputValue"
+            >
+            Przelicz
+        </Button>
+        <ComboBox x:Name="OutputCurrencyCode" 
+            Background="Azure"
+            Grid.Column="3" Margin="5,10,10,5" FontSize="36"/>
+        <ComboBox x:Name="InputCurrencyCode" 
+            Background="Azure"
+            Grid.Column="3" Margin="5,5,10,5" Grid.Row="1" FontSize="36"/>
+        <Button
+            x:Name="LoadFileButton"
+            Grid.Column="0"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            FontSize="36"
+            Margin="10" Click="LoadFileButton_Click"
+            >
+            Wczytaj z pliku
+        </Button>
+        <Button
+            x:Name="SaveFileButton"
+            Grid.Column="2"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Margin="10"
+             FontSize="36" Click="SaveFileButton_Click"
+            >
+            Zapisz do pliku
+        </Button>
+    </Grid>
+</Window>

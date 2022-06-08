@@ -307,7 +307,7 @@ namespace lab_1
         }
 
         public bool refuel(Tank sourceTank, int amount)
-        {
+        {   
             if (amount < 0)
                 return false;
             if (amount > sourceTank._level)

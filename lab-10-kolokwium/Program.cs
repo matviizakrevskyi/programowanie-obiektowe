@@ -135,7 +135,7 @@ namespace lab_10_kolokwium
         //
         static void Task4(List<Complex> list)
         {
-            Dictionary<double, Complex> sorted = new Dictionary<double, Complex>();
+            SortedDictionary<double, Complex> sorted = new SortedDictionary<double, Complex>();
             foreach (var complex in list)
             {
                 sorted.Add(complex.Module(), complex);
@@ -160,7 +160,7 @@ namespace lab_10_kolokwium
             int l;
             IEnumerable<double> rtrn =
                 from complex in list
-                where complex.Re > 0 && complex.Im > 0
+                where complex.Re > 0
                 select complex.Module();
 
             return rtrn;
